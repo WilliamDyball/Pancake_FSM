@@ -27,7 +27,6 @@ public:
 	virtual void moneyRejected(void){}
 	virtual void addMix(int){}
 	virtual void dispense(void){}
-
 };
 
 //Sets up the classes that are chosen for the pancake and filling if filing is chosen
@@ -58,10 +57,7 @@ public:
 	}
 
 	virtual ~Pancake(void)
-	{
-
-	}
-
+	{	}
 };
 
 class ChocolateFilling : public Pancake
@@ -301,15 +297,12 @@ class ChocolateChip : public Coating
 class State : public Transition, public TransitionState
 {
 protected:
-
 	StateContext* currentContext;
 
 public:
-
 	State(StateContext* Context){
 		currentContext = Context;
 	}
-
 };
 
 
@@ -397,14 +390,12 @@ public:
 	void moneyRejected(void){}
 	void addMix(int){}
 	void dispense(void){}
-
 };
 
 
 class OutOfMix : public State
 {
 public:
-
 	OutOfMix(StateContext* Context) : State(Context){}
 
 	void transition()
@@ -445,7 +436,6 @@ public:
 class NoCredit : public State
 {
 public:
-
 	NoCredit(StateContext* Context) : State(Context){}
 
 	void transition(){
@@ -482,7 +472,6 @@ public:
 	void dispense(void){
 		cout << "Error! No Money!" << endl;
 	}
-
 };
 
 void printCost(Pancake* pancakeSold)
@@ -493,7 +482,6 @@ void printCost(Pancake* pancakeSold)
 class HasCredit : public State
 {
 public:
-
 	HasCredit(StateContext* Context) : State(Context){}
 
 	void transition(void){
@@ -815,13 +803,11 @@ public:
 	void dispense(void){
 		cout << "Error! No Selection Made!" << endl;
 	}
-
 };
 
 class DispensesPancake : public State
 {
 public:
-
 	DispensesPancake(StateContext* Context) : State(Context){}
 
 	void transition(void){
@@ -853,7 +839,6 @@ public:
 	}
 
 	void dispense(){
-
 		//system("cls");
 		if (this->currentContext->getStateParam(Credit) >= (this->currentContext->getStateParam(Cost_Of_Pancake))){
 			if (this->currentContext->getStateParam(Pancake_Option) == 0) // Workaround to heat the filling of pancake for plain or a pancake with filling
@@ -914,7 +899,6 @@ public:
 class Pancake_Dispenser : public StateContext, Transition
 {
 public:
-
 	Pancake_Dispenser(){
 		this->availableStates.push_back(new OutOfMix(this));
 		this->availableStates.push_back(new NoCredit(this));
